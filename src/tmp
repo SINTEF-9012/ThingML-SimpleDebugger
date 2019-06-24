@@ -1,0 +1,53 @@
+{
+     "event": {     //can be empty
+           "port":"<port_name>",
+          "message":"<msg_name",
+           "<param1_name>": <value>,                  //si ca t'arrage on peut faire "params":{"p1":v1 … "pn":vn} qui contient les params
+                    …
+           "<paramN_name": <value>
+    },
+    "triggers": {                                                    //empty, if the event is not handled. By default, entering the initial state in a composite will be empty event with triggers of type init.
+        "type":"<init|internal|transition>"
+        "guard": {},                                                      //faut que je reflechisse, mais un truc a la lisp, du genre "and": {"<thingml_expression":"value", "thingml_expression":"value"} mais y'a un peu de boulot dans le cas general (notamment j'ai pas de solution simple generique si on call un function dans la guard…). On zappe pour le moment. Mais ca reste utile pour comprendre pourquoi la guard evalue a true
+        "previous": "<state_name>",                      //will be empty in case type is init
+        "new":"<state_name>"
+    }
+}//in
+
+{                                                
+     "event": {                                                        
+          "port":"super-duper",
+          "message":"plop",
+           "parama": "a",
+           "paramb": "b"
+    }
+}
+
+{                                                
+     "event": {                                                         //same structure as previously, we could skip the first level of JSON, since we just have one field…
+          "port":"<port_name>",
+          "message":"<msg_name",
+           "<param1_name>": <value>,                                  //si ca t'arrage on peut faire "params":{"p1":v1 … "pn":vn} qui contient les params
+                    …
+           "<paramN_name": <value>
+    },
+}//out
+
+{
+    "type":"<thingml type>",
+    "pstype":"<platform specific type>",
+    "name":"<property name>",
+    "previous":<previous value>,
+    "new":<previous value>,
+}//properties
+
+{
+    "type":"<thingml type>",     //return type, possibly empty
+    "pstype":"<platform specific type>", //possibly empty
+    "name":"<function name>",
+    "<param1_name>": <value>,            //si ca t'arrage on peut faire "params":{"p1":v1 … "pn":vn} qui contient les params
+                    …
+    "<paramN_name": <value>,
+    "returns":<value>                    //possibly empty
+}//function 
+ 

@@ -1,0 +1,13 @@
+*.log
+*.pid
+*.seed
+*.pid.lock
+bower_components
+node_modules/
+jspm_packages/
+.npm
+lib/
+.jar
+package-lock.json
+generated_*/
+hosts
